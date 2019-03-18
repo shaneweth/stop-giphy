@@ -1,0 +1,96 @@
+
+body {
+    font-family: 'Cabin', sans-serif;
+    size: 100%;
+    margin: 0%;
+    padding: 0%;
+    background: url("../images/white_table.jpg");
+    
+}
+
+.header {
+    color: maroon;
+    text-align: center;
+}
+
+.container {
+    margin-left:auto;
+    margin-right:auto;
+    width: 65em;
+    justify-content: center;
+    size: 100%;
+    align-self: auto;
+}
+
+.row {
+    margin: 0 auto;
+    text-align: center;
+}
+
+.button {
+    border: .2em double royalblue;
+    height: 8em;
+    width: 8em;
+    margin: 2%;
+    color: white;
+    font-weight: 800;
+    font-size: 1.25em;
+    cursor: pointer;
+    background: url("../images/pi-as-button.png");
+    background-size: 140%;
+    background-repeat: no-repeat;
+    background-position: 50%;
+    border-radius: 50%;
+    /* opacity: .7; */
+    -webkit-text-stroke: 1px black;
+}
+
+.button:hover {
+    background-color: darkred;
+    color: white;
+    filter: grayscale(50%); 
+    font-weight: 900;
+    font-size: 1.3em;
+    letter-spacing: .1em;
+
+}
+
+
+.search {
+  width: 100%;
+  size: 100%;
+  /* padding: 2em; */
+}
+
+.searchTerm {
+  width: 25%;
+  left: 25%;
+  right: 25%;
+  border: .2em solid dodgerblue;
+  height: 2em;
+  border-radius: 1em;
+  color: #9DBFAF;
+  font-size: 1.2em;
+  margin: 0%;
+}
+
+.searchTerm:focus{
+  color: darkgreen;
+}
+
+.searchButton {
+  border: .2em solid maroon;
+  background: dodgerblue;
+  text-align: center;
+  color: #fff;
+  border-radius: 1em;
+  cursor: pointer;
+  /* height: 2em; */
+  padding: .9em;
+  margin: 0%;
+  font-size: 1.2;
+
+  
+}
+
+
