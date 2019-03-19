@@ -27,6 +27,10 @@ body {
     text-align: center;
 }
 
+#btnDiv {
+  size: 100%;
+}
+
 .button {
     border: .2em double royalblue;
     height: 8em;
