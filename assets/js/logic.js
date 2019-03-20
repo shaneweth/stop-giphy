@@ -6,13 +6,46 @@
 // Not sure if these should be Global...
 
 let btnArr = ["Btn 1", "Btn 2", "Btn 3"]
-let giphy = $(this).attr("button");
+let giphy = $(this).attr("data-name");
 const apiKey = "&api_key=e0CoSKwRiwa2Bc1BlmjsuBomeLoxmCcs";
-const queryURL = "https://api.giphy.com/v1/gifs/search?q=" + giphy + apiKey; // Needs Query and API key
+const queryURL = "https://api.giphy.com/v1/gifs/search?q=" + giphy + apiKey;
 
 // Build Functions
 // ========================================
+function makeBtn() {
 
+    // Clears the button div, to avoid duplicates
+    $("#btn-div").empty();
+
+    // Loop through array of buttons
+    for (let i = 0; i < btnArr.length; i++) {
+
+        // Dynamically generate buttons
+
+        var b = $("<button>");
+
+        // Add the class
+        b.addClass("button");
+        // data-attribute with value of the search term at index i
+        b.attr("data-name", btnArr[i]);
+        // replace text with search term
+        b.text(btnArr[i]);
+        //add the button to #btn-div
+        $("#btn-div").append(b);
+    }
+}
+
+$("button").on("click", function (event) {
+
+    event.preventDefault();
+
+    var giphy = $("#search-term").val().trim();
+    btnArr.push(giphy);
+
+    makeBtn();
+});
+
+makeBtn();
 
 // on Click listener
 $("button").on("click", function () {
@@ -24,7 +57,30 @@ $("button").on("click", function () {
     })
 
         .then(function (response) {
-            console.log(response.data.embed_url); // What JSON data is pulled from the response []
+            console.log(response.data); // What JSON data is pulled from the response []
+
+            let gifURL = response.data;
+
+            for (let i = 0; i < gifURL.length; i++) {
+
+                if (gifURL[i].rating !== "r" && gifURL[i].rating !== "pg-13") {
+
+                    var gifDiv = $("<div>");
+
+                    var rating = gifURL[i].rating;
+
+                    var p = $("<p>").text("Rating: " + rating);
+
+                    var gifImg = $("<img>");
+
+                    gifImg.attr("src", gifURL[i].images.fixed_height.url);
+
+                    gifDiv.append(p);
+                    gifDiv.append(gifImg);
+
+                    $("#gif-section").prepend(gifDiv);
+                }
+            }
         });
 })
 
@@ -36,21 +92,3 @@ $("button").on("click", function () {
 
 
 
-
-// function to create button element entered by user
-
-function renderButton() {
-
-        // Clear the #btn-div to prevent repeat buttons from being created in Array
-        $("#btn-div").empty();
-
-        // Loop through array of gif search terms
-        for (let i = 0; i < btnArr.length; i++) {
-
-            var b = $("<button>");
-
-            b.addClass("gify");
-
-            b.attr
-        }
-    }
