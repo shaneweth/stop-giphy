@@ -1,54 +1,17 @@
-
-
-
-// Set Variables
-// ========================================
-// Not sure if these should be Global...
-
-let btnArr = ["Btn 1", "Btn 2", "Btn 3"]
-let giphy = $(this).attr("data-name");
+let btnArr = ["btn1", "btn2", "btn3"]
+// let giphy = $(this).attr("data-name");
 const apiKey = "&api_key=e0CoSKwRiwa2Bc1BlmjsuBomeLoxmCcs";
+
+let giphy = $("#search-term").val();
+
 const queryURL = "https://api.giphy.com/v1/gifs/search?q=" + giphy + apiKey;
 
-// Build Functions
-// ========================================
-function makeBtn() {
-
-    // Clears the button div, to avoid duplicates
-    $("#btn-div").empty();
-
-    // Loop through array of buttons
-    for (let i = 0; i < btnArr.length; i++) {
-
-        // Dynamically generate buttons
-
-        var b = $("<button>");
-
-        // Add the class
-        b.addClass("button");
-        // data-attribute with value of the search term at index i
-        b.attr("data-name", btnArr[i]);
-        // replace text with search term
-        b.text(btnArr[i]);
-        //add the button to #btn-div
-        $("#btn-div").append(b);
-    }
-}
-
-$("button").on("click", function (event) {
-
-    event.preventDefault();
-
-    var giphy = $("#search-term").val().trim();
-    btnArr.push(giphy);
-
-    makeBtn();
-});
-
-makeBtn();
 
 // on Click listener
-$("button").on("click", function () {
+$("button").on("click", function (e) {
+
+    e.preventDefault();
+    console.log(giphy);
 
     // AJAX Request
     $.ajax({
@@ -83,12 +46,3 @@ $("button").on("click", function () {
             }
         });
 })
-
-// Create Processes
-// ========================================
-
-
-
-
-
-
