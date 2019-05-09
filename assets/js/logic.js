@@ -3,7 +3,7 @@ $(document).ready(function () {
 
     let btnArr = ["pi", "pie", "pai"]
 
-    let giphy = $("#search-term").val();
+    let giphy = $("#search-term").val() || $("data-name").val();
 
     const apiKey = "&api_key=e0CoSKwRiwa2Bc1BlmjsuBomeLoxmCcs";
 
@@ -11,41 +11,41 @@ $(document).ready(function () {
     let queryURL = "https://api.giphy.com/v1/gifs/search?q=" + giphy + apiKey;
 
 
-    // function makeBtn() {
-    //     // Clear button div
-    //     $("#btn-div").empty();
+    function makeBtn() {
+        // Clear button div
+        $("#btn-div").empty();
 
-    //     // Loop through the button arr
+        // Loop through the button arr
 
-    //     for (let i = 0; i < btnArr.length; i++) {
+        for (let i = 0; i < btnArr.length; i++) {
 
-    //         // generate buttons
+            // generate buttons
 
-    //         var b = $("<button>");
+            var b = $("<button>");
 
-    //         // add class
-    //         b.addClass("button");
-    //         // data-attribute that shows the value of the search term at index i
-    //         b.attr("data-name", btnArr[i]);
-    //         // replace text with search term
-    //         b.text(btnArr[i]);
-    //         // append to #btn-div
-    //         $("#btn-div").append(b);
+            // add class
+            b.addClass("button");
+            // data-attribute that shows the value of the search term at index i
+            b.attr("data-name", btnArr[i]);
+            // replace text with search term
+            b.text(btnArr[i]);
+            // append to #btn-div
+            $("#btn-div").append(b);
 
-    //     }
-    // }
+        }
+    }
 
-    // makeBtn();
+    makeBtn();
 
     // on Click listener
     $("button").on("click", function () {
 
 
         console.log($("#search-term").val());
-        giphy = $("#search-term").val();
+        giphy = $("#search-term").val() || $("#data-name").val();
         queryURL = "https://api.giphy.com/v1/gifs/search?q=" + giphy + apiKey;
 
-        console.log(queryURL);
+        console.log(giphy);
 
         // event.preventDefault();
 
@@ -81,9 +81,9 @@ $(document).ready(function () {
                     }
                 }
             });
-        // btnArr.push(giphy);
+        btnArr.push(giphy);
 
-        // makeBtn();
+        makeBtn();
     })
 
 })
